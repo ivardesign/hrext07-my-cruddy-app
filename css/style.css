@@ -1,24 +1,29 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
-html {
 
-}
-body {
+html {}
 
-}
-main {
+body {}
 
-}
-form {
+header {}
 
-}
-button {
+main {}
 
-}
-input {
+form {}
 
-}
-footer {
+input {}
 
-}
+button {}
+
+footer {}
+
+#addText {}
+
+#responses {}
+
+#content {}
+
+.entries {}
+
+.entry {}
