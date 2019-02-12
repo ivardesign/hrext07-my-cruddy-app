@@ -11,4 +11,8 @@ Create Read Update and Delete framework using JS
 - [ ] UI/UX considerations (how are we going to use this?)
 
 ### Advanced Reqs
-- [ ] Item that I added goes here...
+- [ ] Clear inputs on click of 'add' button
+- [ ] Make 'add' generate unique key (id) for each entry and get rid of the 'key' input on the form
+- [ ] Add function should ouput to display: entry data (ToDo item) with unique edit and delete buttons
+- [ ] Rearrange UI
+- [ ] Clear button: should be obvious that Clear means to clear all ToDos and maybe say 'Clear all'
