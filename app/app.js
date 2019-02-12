@@ -61,7 +61,15 @@ $(document).ready(function() {
     // <div class="display-data-item" data-keyValue="keyData">valueData</div>
     //ToDo make these vars make sense accross the app
 
-    $('.display-entry').append(`<div class="display-data-item ` + keyData + `" data-keyValue="keyData">` + valueData + `</div>`);
+    $('.display-entry').append(`<div class="display-data-item ` +
+                         keyData +
+                         `" data-keyValue="keyData"><span class="item">` +
+                         valueData +
+                         `</span><span class="item-buttons"><button class="edit" id="` +
+                         keyData +
+                         `">Edit</button><button class="delete" id="` +
+                         keyData +
+                         `">Delete</button></span></div>`);
   });
 
   // delete item
