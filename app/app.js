@@ -47,9 +47,9 @@ localStorage.clear(); //clears all local storage
 $(document).ready(function() {
   $('.submit').click(function(e) {
     //console.log(e);
-    var keyData = $('#input-key').val();
+    var keyData = Date.now();// use instead of asking for key entry.
     var valueData = $('#addText').val();
-    $('#input-key').val('');// clear input
+    //$('#input-key').val('');// clear input
     $('#addText').val(''); // clear input
     // write to db
     localStorage.setItem(keyData, valueData);
