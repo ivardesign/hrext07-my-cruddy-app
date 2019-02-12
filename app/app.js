@@ -22,21 +22,15 @@
 
     // >>> clear inputs function plan <<<
     // tied to 'add' click-event (what about when someone just hits return/enter?)
-    // search MDN : clear input on click
-
+    // search MDN : clear input on click >>>>>>> try #addText .value = '';
     // >>> Add generates unique key (id) function plan <<<
     // John mentioned something about uuid generater ... see if that's something to use
     // mdn uuid and search uuid generator
-
     // once set up, remove add input from UI
     // Add must also include Edit and Delete, tied to key of entry
     // Add must 'append' new entries (replace '.html')
     // do buttons need to be in forms? what happens to listeners when we append?
-
-
 /* ----------------------------------------------------------------------------------- */
-
-
 // init app
 // interact with DOM
 // interact with localstorage
@@ -55,6 +49,8 @@ $(document).ready(function() {
     //console.log(e);
     var keyData = $('#input-key').val();
     var valueData = $('#addText').val();
+    $('#input-key').val('');// clear input
+    $('#addText').val(''); // clear input
     // write to db
     localStorage.setItem(keyData, valueData);
     var displayText = keyData + ' | ' + localStorage.getItem(keyData);
