@@ -28,10 +28,10 @@
 
 /* ----------------------------------------------------------------------------------- */
 $(document).ready(function() {
-  // should load pre-existing local storage. i want to wait for doc ready to load
-  for (var key of localStorage) {
+  // should load pre-existing local storage. wait for doc ready to load
+  for (var i = 0; i < localStorage.length; i++) {
     // load each value and its html
-    // what order will the items appear? depends on iterator, key or order in storage?
+    console.log(localStorage.getItem(localStorage.key(i)));// items appear FIFO
   }
 
   // '.submit' (aka: add)
