@@ -28,10 +28,21 @@
 
 /* ----------------------------------------------------------------------------------- */
 $(document).ready(function() {
-  // should load pre-existing local storage. wait for doc ready to load
-  for (var i = 0; i < localStorage.length; i++) {
-    // load each value and its html
-    console.log(localStorage.getItem(localStorage.key(i)));// items appear FIFO
+  // should load pre-existing local storage to display on ready/refresh
+  // if localStorage stuff... iterate
+  if (localStorage.length > 0) {
+    for (var i = 0; i < localStorage.length; i++) {
+      // get current key and value
+      var keysArray = Object.keys(localStorage);
+      var keyData = keysArray[i];
+      var valueData = localStorage.getItem(localStorage.key(i));
+      // load value and its html and put it on display
+      $('.todos').append(`<div class="display-data-item" data-key-value="` + keyData +
+                         `"><span class="item">` + valueData +
+                         `</span><span class="item-buttons"><button class="edit" id="` + keyData +
+                         `">Edit</button><button class="delete" id="` + keyData +
+                         `">Delete</button></span></div>`);
+    }
   }
 
   // '.submit' (aka: add)
