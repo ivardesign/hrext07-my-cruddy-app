@@ -47,7 +47,7 @@ $(document).ready(function() {
 
   // delete item
   $('.todos').on('click', '.delete', function() {// get item clicked in .todos
-    var keyData = $('.delete').attr('id').toString();// get id and make it a string
+    var keyData = $(this).attr('id').toString();// get id and make it a string
 
     localStorage.removeItem(keyData);// removes key and data
     $(this).closest('div').remove();// remove item from display
@@ -55,8 +55,7 @@ $(document).ready(function() {
 
   // edit item
   $('.todos').on('click', '.edit', function() {// get item clicked in .todos
-
-    var keyData = $('.delete').attr('id').toString();// get id and make it a string
+    var keyData = $('.edit').attr('id').toString();// get id and make it a string
     // uh oh... how to edit?
   });
 
