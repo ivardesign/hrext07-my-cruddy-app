@@ -73,24 +73,22 @@ $(document).ready(function() {
   });
 
   // delete item
-  $('.todos').on('click', '.delete', function() {// get key from class of parent instead
-    var keyData = $('.delete').attr('id').toString();
-    localStorage.removeItem(keyData);
-    $(this).closest('div').remove();
+  $('.todos').on('click', '.delete', function() {// get item clicked in .todos
+    var keyData = $('.delete').attr('id').toString();// get id and make it a string
+    localStorage.removeItem(keyData);// removes key and data
+    $(this).closest('div').remove();// remove item from display
   });
 
   // edit item
-  $('.todos').on('click', '.edit', function() {// get key from class of parent instead
-    alert($('.edit').parent().attr('class'));
-    var keyData = $('#input-key').val();
-    localStorage.removeItem(keyData);
-    //$('.display-entry').keyData.remove();
+  $('.todos').on('click', '.edit', function() {// get item clicked in .todos
+    var keyData = $('.delete').attr('id').toString();// get id and make it a string
+    // uh oh... how to edit?
   });
 
-  // delete all
-  $('.clear').click(function() {// get key from class of item instead
-    localStorage.clear();
-    $('.display-entry').text('');
+  // clear all
+  $('.clear').click(function() {// clear all .todos
+    localStorage.clear();// clears localstorage
+    $('.todos').html('');// clear the .todos box
   });
-  // update/edit db
+
 });
