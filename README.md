@@ -15,5 +15,3 @@ Create Read Update and Delete framework using JS
 - [ ] Add function should ouput to display: entry data (ToDo item) with unique edit and delete buttons
 - [ ] Rearrange UI
 - [ ] Clear button: should be obvious that Clear means to clear all ToDos and maybe say 'Clear all'
-
-This app is not meant to be practical. It is simply an exercise in basic use of localstorage and elementary JS/JQuery.
