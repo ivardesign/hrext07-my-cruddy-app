@@ -78,15 +78,17 @@ $(document).ready(function() {
     var keyData = $('.save').attr('id').toString();
     var valueData = $('.save-value').val();
 
-    $('.save-value').val(''); // clear input
-    // write to db
-    localStorage.setItem(keyData, valueData);
-    // write to display
-    $(this).closest('div').replaceWith('<div class="display-data-item" data-key-value="' + keyData +
-                                       '"><span class="item">' + valueData +
-                                       '</span><span class="item-buttons"><button class="edit" id="' + keyData +
-                                       '">Edit</button><button class="delete" id="' + keyData +
-                                       '">Delete</button></span></div>');
+    if (valueData) {
+      $('.save-value').val(''); // clear input
+      // write to db
+      localStorage.setItem(keyData, valueData);
+      // write to display
+      $(this).closest('div').replaceWith('<div class="display-data-item" data-key-value="' + keyData +
+                                         '"><span class="item">' + valueData +
+                                         '</span><span class="item-buttons"><button class="edit" id="' + keyData +
+                                         '">Edit</button><button class="delete" id="' + keyData +
+                                         '">Delete</button></span></div>');
+    }
   });
 
   // '.cancel'
