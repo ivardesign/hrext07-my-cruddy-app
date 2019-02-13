@@ -28,6 +28,11 @@
 
 /* ----------------------------------------------------------------------------------- */
 $(document).ready(function() {
+  // on ready, should load pre-existing local storage.  But they're all separate entries, not a single object.
+  // there is currently no way to determine if the item in localstorage belongs to this app?
+  // probably need to redesign the storage 'system' to be a single object of objects.
+
+
   // '.submit' (aka: add)
   $('.submit').click(function(e) {
     var keyData = Date.now();// use timestamp instead of asking for a key entry.
