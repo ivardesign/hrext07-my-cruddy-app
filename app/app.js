@@ -28,6 +28,7 @@
 
 /* ----------------------------------------------------------------------------------- */
 $(document).ready(function() {
+  // '.submit' (aka: add)
   $('.submit').click(function(e) {
     var keyData = Date.now();// use timestamp instead of asking for a key entry.
     var valueData = $('#addText').val();
@@ -45,7 +46,7 @@ $(document).ready(function() {
     }
   });
 
-  // delete item
+  // '.delete'
   $('.todos').on('click', '.delete', function() {// get item clicked in .todos
     var keyData = $(this).attr('id').toString();// get id and make it a string
 
@@ -53,32 +54,46 @@ $(document).ready(function() {
     $(this).closest('.display-data-item').remove();// remove item from display
   });
 
-  // edit item
+  // '.edit'
   $('.todos').on('click', '.edit', function() {// get item clicked in .todos
     var keyData = $(this).attr('id').toString();// get id and make it a string
     var valueData = window.localStorage.getItem(keyData);
-    console.log(valueData);
     // on click:
       // replace content of data-keyValue with
         // an input that contains the value currently stored
         // and replace .item-buttons (edit/delete buttons) with 'save' and 'cancel' buttons
-      $(this).closest('div').replaceWith('<input type="text" id="edit-value" value="' + valueData +
+      $(this).closest('div').replaceWith('<div><input type="text" class="save-value" id="' + keyData +
+                                         '" value="' + valueData +
                                          '"></input><span class="item-buttons">' +
-                                         '<button id="save">Save</button><button id="cancel">Cancel</button>' +
-                                         '</span>');
-      $('#edit-value').focus();
-
-
+                                         '<button class="save" id="' + keyData +
+                                         '">Save</button><button class="cancel">Cancel</button>' +
+                                         '</span></div>');
+      $('.save-value').focus();
   });
 
-  // save
+  // '.save'
   // on save, put updated value into localstorage
   // swap input and save/cancel buttons for updated value & edit/delete
+  $('.todos').on('click', '.save', function() {
+    var keyData = $('.save').attr('id').toString();
+    var valueData = $('.save-value').val();
+    console.log(valueData);
 
-  // cancel
+    $('#addText').val(''); // clear input
+    // write to db
+    localStorage.setItem(keyData, valueData);
+    // write to display
+    $(this).closest('div').replaceWith('<div class="display-data-item" data-key-value="' + keyData +
+                                       '"><span class="item">' + valueData +
+                                       '</span><span class="item-buttons"><button class="edit" id="' + keyData +
+                                       '">Edit</button><button class="delete" id="' + keyData +
+                                       '">Delete</button></span></div>');
+  });
+
+  // '.cancel'
   // on cancel, just swap input and save/cancel buttons for current value & edit/delete
 
-  // clear all
+  // 'clear all'
   $('.clear').click(function() {
     localStorage.clear();// clears localstorage
     $('.todos').html('');// clear the .todos box
