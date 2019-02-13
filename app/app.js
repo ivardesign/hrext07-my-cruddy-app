@@ -28,10 +28,11 @@
 
 /* ----------------------------------------------------------------------------------- */
 $(document).ready(function() {
-  // on ready, should load pre-existing local storage.  But they're all separate entries, not a single object.
-  // there is currently no way to determine if the item in localstorage belongs to this app?
-  // probably need to redesign the storage 'system' to be a single object of objects.
-
+  // should load pre-existing local storage. i want to wait for doc ready to load
+  for (var key of localStorage) {
+    // load each value and its html
+    // what order will the items appear? depends on iterator, key or order in storage?
+  }
 
   // '.submit' (aka: add)
   $('.submit').click(function(e) {
