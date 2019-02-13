@@ -18,7 +18,11 @@ header, main, footer {
   padding: .5em;
 }
 
-header {}
+header {
+  margin: 2em auto;
+  text-align: center;
+  color: #555;
+}
 
 main {}
 

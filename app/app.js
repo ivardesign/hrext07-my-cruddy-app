@@ -37,8 +37,8 @@ $(document).ready(function() {
       // write to db
       localStorage.setItem(keyData, valueData);
       // write to display
-      $('.todos').append(`<div class="display-data-item ` + keyData +
-                         `" data-keyValue="keyData"><span class="item">` + valueData +
+      $('.todos').append(`<div class="display-data-item" data-keyValue="` + keyData +
+                         `"><span class="item">` + valueData +
                          `</span><span class="item-buttons"><button class="edit" id="` + keyData +
                          `">Edit</button><button class="delete" id="` + keyData +
                          `">Delete</button></span></div>`);
@@ -50,13 +50,19 @@ $(document).ready(function() {
     var keyData = $(this).attr('id').toString();// get id and make it a string
 
     localStorage.removeItem(keyData);// removes key and data
-    $(this).closest('div').remove();// remove item from display
+    $(this).closest('.display-data-item').remove();// remove item from display
   });
 
   // edit item
   $('.todos').on('click', '.edit', function() {// get item clicked in .todos
-    var keyData = $('.edit').attr('id').toString();// get id and make it a string
+    var keyData = $(this).attr('id').toString();// get id and make it a string
+
     // uh oh... how to edit?
+    // on click:
+      // replace data-keyValue with an input that contains the value currently stored
+      // replace .item-buttons (edit/delete buttons) with 'save' and 'cancel' buttons
+      // on save or cancel, put the updated (or not) value in place (removing the input) and swap the buttons back
+      // need to make a save and cancel button too
   });
 
   // clear all
