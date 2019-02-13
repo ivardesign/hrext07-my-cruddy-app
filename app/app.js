@@ -31,6 +31,8 @@ $(document).ready(function() {
   // should load pre-existing local storage to display on ready/refresh
   // if localStorage stuff... iterate
   if (localStorage.length > 0) {
+    // remove .hide class from .todos when there's stuff in localStorage
+
     for (var i = 0; i < localStorage.length; i++) {
       // get current key and value
       var keysArray = Object.keys(localStorage);
@@ -43,6 +45,11 @@ $(document).ready(function() {
                          `">Edit</button><button class="delete" id="` + keyData +
                          `">Delete</button></span></div>`);
     }
+  } else {
+    // add .hide class to .todos if localStorage is empty
+    // how will this work?
+    // after dom is loaded, new events need to check every time if there's anything in localStorage
+    // maybe the check should be a function that can be called anywhere else it's needed.
   }
 
   // '.submit' (aka: add)
