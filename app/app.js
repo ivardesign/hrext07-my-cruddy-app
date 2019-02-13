@@ -63,14 +63,20 @@ $(document).ready(function() {
         // an input that contains the value currently stored
         // and replace .item-buttons (edit/delete buttons) with 'save' and 'cancel' buttons
       $(this).closest('div').replaceWith('<input type="text" id="edit-value" value="' + valueData +
-                                         '"></input><span class="item-buttons">' + $('editButtons') +
+                                         '"></input><span class="item-buttons">' +
+                                         '<button id="save">Save</button><button id="cancel">Cancel</button>' +
                                          '</span>');
       $('#edit-value').focus();
 
-        // on save or cancel, put the updated (or not) value in place (removing the input) and
-        // swap the buttons back
-      // need to make a save and cancel button too
+
   });
+
+  // save
+  // on save, put updated value into localstorage
+  // swap input and save/cancel buttons for updated value & edit/delete
+
+  // cancel
+  // on cancel, just swap input and save/cancel buttons for current value & edit/delete
 
   // clear all
   $('.clear').click(function() {
