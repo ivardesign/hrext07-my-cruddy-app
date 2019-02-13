@@ -53,7 +53,6 @@ footer {}
 .item {
   display: block;
   padding: .5em;
-  word-break: break-all;
 }
 
 .item-buttons {
