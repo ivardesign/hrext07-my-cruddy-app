@@ -31,30 +31,31 @@ $(document).ready(function() {
   $('.submit').click(function(e) {
     var keyData = Date.now();// use timestamp instead of asking for a key entry.
     var valueData = $('#addText').val();
-    $('#addText').val(''); // clear input
-    // write to db
-    localStorage.setItem(keyData, valueData);
-    // write to display
-    $('.todos').append(`<div class="display-data-item ` +
-                         keyData +
-                         `" data-keyValue="keyData"><span class="item">` +
-                         valueData +
-                         `</span><span class="item-buttons"><button class="edit" id="` +
-                         keyData +
-                         `">Edit</button><button class="delete" id="` +
-                         keyData +
+
+    if (valueData) {
+      $('#addText').val(''); // clear input
+      // write to db
+      localStorage.setItem(keyData, valueData);
+      // write to display
+      $('.todos').append(`<div class="display-data-item ` + keyData +
+                         `" data-keyValue="keyData"><span class="item">` + valueData +
+                         `</span><span class="item-buttons"><button class="edit" id="` + keyData +
+                         `">Edit</button><button class="delete" id="` + keyData +
                          `">Delete</button></span></div>`);
+    }
   });
 
   // delete item
   $('.todos').on('click', '.delete', function() {// get item clicked in .todos
     var keyData = $('.delete').attr('id').toString();// get id and make it a string
+
     localStorage.removeItem(keyData);// removes key and data
     $(this).closest('div').remove();// remove item from display
   });
 
   // edit item
   $('.todos').on('click', '.edit', function() {// get item clicked in .todos
+
     var keyData = $('.delete').attr('id').toString();// get id and make it a string
     // uh oh... how to edit?
   });
