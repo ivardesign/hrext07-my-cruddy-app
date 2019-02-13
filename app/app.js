@@ -61,7 +61,7 @@ $(document).ready(function() {
     // <div class="display-data-item" data-keyValue="keyData">valueData</div>
     //ToDo make these vars make sense accross the app
 
-    $('.display-entry').append(`<div class="display-data-item ` +
+    $('.todos').append(`<div class="display-data-item ` +
                          keyData +
                          `" data-keyValue="keyData"><span class="item">` +
                          valueData +
@@ -73,14 +73,22 @@ $(document).ready(function() {
   });
 
   // delete item
-  $('.delete').click(function() {
-  var keyData = $('#input-key').val();
+  $('.todos').on('click', '.delete', function() {// get key from class of parent instead
+    var keyData = $('.delete').attr('id').toString();
     localStorage.removeItem(keyData);
-    $('.display-entry').text('');
+    $(this).closest('div').remove();
+  });
+
+  // edit item
+  $('.todos').on('click', '.edit', function() {// get key from class of parent instead
+    alert($('.edit').parent().attr('class'));
+    var keyData = $('#input-key').val();
+    localStorage.removeItem(keyData);
+    //$('.display-entry').keyData.remove();
   });
 
   // delete all
-  $('.clear').click(function() {
+  $('.clear').click(function() {// get key from class of item instead
     localStorage.clear();
     $('.display-entry').text('');
   });
