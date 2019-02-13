@@ -77,9 +77,8 @@ $(document).ready(function() {
   $('.todos').on('click', '.save', function() {
     var keyData = $('.save').attr('id').toString();
     var valueData = $('.save-value').val();
-    console.log(valueData);
 
-    $('#addText').val(''); // clear input
+    $('.save-value').val(''); // clear input
     // write to db
     localStorage.setItem(keyData, valueData);
     // write to display
@@ -91,7 +90,18 @@ $(document).ready(function() {
   });
 
   // '.cancel'
-  // on cancel, just swap input and save/cancel buttons for current value & edit/delete
+  $('.todos').on('click', '.cancel', function() {
+    var keyData = $('.save').attr('id').toString();
+    var valueData = $('.save-value').val();
+
+    $('.save-value').val(''); // clear input
+    // write to display
+    $(this).closest('div').replaceWith('<div class="display-data-item" data-key-value="' + keyData +
+                                       '"><span class="item">' + valueData +
+                                       '</span><span class="item-buttons"><button class="edit" id="' + keyData +
+                                       '">Edit</button><button class="delete" id="' + keyData +
+                                       '">Delete</button></span></div>');
+  });
 
   // 'clear all'
   $('.clear').click(function() {
