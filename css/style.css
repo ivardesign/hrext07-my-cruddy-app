@@ -46,8 +46,12 @@ footer {
 }
 
 #responses h2 {
-  padding: 1em;
-  margin: 0;
+  display: block;
+  text-align: center;
+  height: 2em;
+  color: lime;
+  font-size: .89em;
+  font-weight: 300;
 }
 
 #content {

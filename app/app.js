@@ -27,17 +27,6 @@
     // Add must 'append' new entries (replace '.html')
 
 /*---------------------------------------------- */
-// 'toggleDisplay'
-function toggleDisplay() {
-  var keysArray = Object.keys(localStorage);
-
-  if (keysArray.length > 0) {
-    $('#content').removeClass('hide');
-  } else if (keysArray.length === 0) {
-    $('#content').addClass('hide');
-  }
-}
-
 $(document).ready(function() {
   // should load pre-existing local storage to display on ready/refresh
   // if localStorage stuff... iterate
@@ -79,6 +68,7 @@ $(document).ready(function() {
                          `">Delete</button></span></div>`);
       // toggleDisplay
       toggleDisplay();
+      respond(this);// -----------------------------------------------------
     }
 
   });
@@ -86,11 +76,14 @@ $(document).ready(function() {
   // '.delete'
   $('.todos').on('click', '.delete', function() {// get item clicked in .todos
     var keyData = $(this).attr('id').toString();// get id and make it a string
+    $(this).closest('.display-data-item').fadeOut(150, function() {
+      localStorage.removeItem(keyData);// removes key and data
+      $(this).closest('.display-data-item').remove();// remove item from display
+      // toggleDisplay
+      toggleDisplay();
+      respond(this);// -----------------------------------------------------
+    });
 
-    localStorage.removeItem(keyData);// removes key and data
-    $(this).closest('.display-data-item').remove();// remove item from display
-    // toggleDisplay
-    toggleDisplay();
   });
 
   // '.edit'
@@ -128,6 +121,7 @@ $(document).ready(function() {
                                          '">Edit</button><button class="delete" id="' + keyData +
                                          '">Delete</button></span></div>');
     }
+    respond(this);// -----------------------------------------------------
   });
 
   // '.cancel'
@@ -142,6 +136,7 @@ $(document).ready(function() {
                                        '</span><span class="item-buttons"><button class="edit" id="' + keyData +
                                        '">Edit</button><button class="delete" id="' + keyData +
                                        '">Delete</button></span></div>');
+    respond(this);// -----------------------------------------------------
   });
 
   // 'clear all'
@@ -150,6 +145,47 @@ $(document).ready(function() {
     $('.todos').html('');// clear the .todos box
     // toggleDisplay
     toggleDisplay();
+    respond(this);// -----------------------------------------------------
   });
+
+  // 'toggleDisplay'
+  function toggleDisplay() {
+    var keysArray = Object.keys(localStorage);
+
+    if (keysArray.length > 0) {
+      $('#content').fadeIn(100, function() {
+        $('#content').removeClass('hide');
+      });
+    } else if (keysArray.length === 0) {
+      $('#content').fadeOut(100, function() {
+        $('#content').addClass('hide');
+      });
+    }
+  }
+
+  // responses
+  // $('#responses').append('A response might be nice.  Maybe not.');
+  function respond() {
+    // detect what is calling for a response
+    var arg = arguments[0].className;
+    var deleteResponse = '<h2>ToDo has been deleted</h2>';
+    var addResponse    = '<h2>ToDo has been added</h2>';
+    var clearResponse  = '<h2>ToDo list has been cleared</h2>';
+    var saveResponse   = '<h2>ToDo edit has been saved</h2>';
+    var cancelResponse = '<h2>ToDo edit has been cancelled</h2>';
+    var $response;
+    // establish appropriate response
+    if (arg == 'display-data-item') $response = deleteResponse;
+    if (arg == 'submit')            $response = addResponse;
+    if (arg == 'clear')             $response = clearResponse;
+    if (arg == 'save')              $response = saveResponse;
+    if (arg == 'cancel')            $response = cancelResponse;
+    // response message should fade in
+    // response message should fade out after n seconds
+    $('#responses').animate({ opacity: 0 }, function() {
+      $('#responses h2').replaceWith($response);
+      $('#responses').animate({ opacity: 1 }, 100).delay(4000).animate({ opacity: 0 });
+    });
+  }
 
 });
