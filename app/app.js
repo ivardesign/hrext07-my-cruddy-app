@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------------------- */
+/*---------------------------------------------- */
     // ---------- brainstorm ----------
     // clear inputs on button click (add button)
     // every entry should be appened as a new .display-entry item (switch to append)
@@ -26,12 +26,24 @@
     // Add must also include Edit and Delete, tied to key of entry
     // Add must 'append' new entries (replace '.html')
 
-/* ----------------------------------------------------------------------------------- */
+/*---------------------------------------------- */
+// 'toggleDisplay'
+function toggleDisplay() {
+  var keysArray = Object.keys(localStorage);
+
+  if (keysArray.length > 0) {
+    $('#content').removeClass('hide');
+  } else if (keysArray.length === 0) {
+    $('#content').addClass('hide');
+  }
+}
+
 $(document).ready(function() {
   // should load pre-existing local storage to display on ready/refresh
   // if localStorage stuff... iterate
   if (localStorage.length > 0) {
-    // remove .hide class from .todos when there's stuff in localStorage
+    // toggleDisplay
+    toggleDisplay();
 
     for (var i = 0; i < localStorage.length; i++) {
       // get current key and value
@@ -46,10 +58,8 @@ $(document).ready(function() {
                          `">Delete</button></span></div>`);
     }
   } else {
-    // add .hide class to .todos if localStorage is empty
-    // how will this work?
-    // after dom is loaded, new events need to check every time if there's anything in localStorage
-    // maybe the check should be a function that can be called anywhere else it's needed.
+    // toggleDisplay
+    toggleDisplay();
   }
 
   // '.submit' (aka: add)
@@ -67,7 +77,10 @@ $(document).ready(function() {
                          `</span><span class="item-buttons"><button class="edit" id="` + keyData +
                          `">Edit</button><button class="delete" id="` + keyData +
                          `">Delete</button></span></div>`);
+      // toggleDisplay
+      toggleDisplay();
     }
+
   });
 
   // '.delete'
@@ -76,6 +89,8 @@ $(document).ready(function() {
 
     localStorage.removeItem(keyData);// removes key and data
     $(this).closest('.display-data-item').remove();// remove item from display
+    // toggleDisplay
+    toggleDisplay();
   });
 
   // '.edit'
@@ -133,6 +148,8 @@ $(document).ready(function() {
   $('.clear').click(function() {
     localStorage.clear();// clears localstorage
     $('.todos').html('');// clear the .todos box
+    // toggleDisplay
+    toggleDisplay();
   });
 
 });
