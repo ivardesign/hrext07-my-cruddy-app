@@ -72,7 +72,8 @@ footer {
 
 .item {
   display: block;
-  padding: .5em;
+  padding: 1em;
+  margin-bottom: 1em;
 }
 
 .item-buttons {
