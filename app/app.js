@@ -22,7 +22,7 @@
     // >>> clear inputs function plan <<<
     // tied to 'add' click-event (what about when someone just hits return/enter?)
     // >>> Add generates unique key (id) function plan <<<
-    // once set up, remove add input from UI
+    // once set up, remove addKey input from UI
     // Add must also include Edit and Delete, tied to key of entry
     // Add must 'append' new entries (replace '.html')
 
@@ -184,8 +184,12 @@ $(document).ready(function() {
     // response message should fade out after n seconds
     $('#responses').animate({ opacity: 0 }, function() {
       $('#responses h2').replaceWith($response);
-      $('#responses').animate({ opacity: 1 }, 100).delay(4000).animate({ opacity: 0 });
+      $('#responses').animate({ opacity: 1 }, 0).delay(1500).animate({ opacity: 0 });
     });
   }
 
 });
+// final thoughts:
+// i don't care for the feedback responses.  they feel unnecessary.
+// drag and drop reordering and memory of changes seems important
+// unique id-prefix tied to app would allow for other items that use localStorage on the same domain

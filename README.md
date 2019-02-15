@@ -15,3 +15,8 @@ Create Read Update and Delete framework using JS
 - [x] Add function should ouput to display: entry data (ToDo item) with unique edit and delete buttons
 - [x] Rearrange UI
 - [x] Clear button: should be obvious that Clear means to clear all ToDos and maybe say 'Clear all'
+
+## Final Thoughts
+- I don't care for the feedback responses, they feel unnecessary.
+- Drag and drop reordering and memory of changes seems important.
+- Unique id-prefix tied to app would allow for other items that use localStorage on the same domain.
