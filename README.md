@@ -17,6 +17,5 @@ Create Read Update and Delete framework using JS
 - [x] Clear button: should be obvious that Clear means to clear all ToDos and maybe say 'Clear all'
 
 ## Final Thoughts
-- I don't care for the feedback responses, they feel unnecessary.
+- I don't care for the feedback responses, they seem to be merely showing off jQuery.
 - Drag and drop reordering and memory of changes seems important.
-- Unique id-prefix tied to app allows for other items that use localStorage on the same domain, but the 'Clear All' button clears ALL localStorage: it should ONLY clear ToDo list items with the unique-ish prefix!
