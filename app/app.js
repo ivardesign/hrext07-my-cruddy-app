@@ -38,13 +38,16 @@ $(document).ready(function() {
       // get current key and value
       var keysArray = Object.keys(localStorage);
       var keyData = keysArray[i];
+      var keyPrefix = keysArray[i].slice(0, 8);
       var valueData = localStorage.getItem(localStorage.key(i));
-      // load value and its html and put it on display
-      $('.todos').append(`<div class="display-data-item" data-key-value="` + keyData +
-                         `"><span class="item">` + valueData +
-                         `</span><span class="item-buttons"><button class="edit" id="` + keyData +
-                         `">Edit</button><button class="delete" id="` + keyData +
-                         `">Delete</button></span></div>`);
+      // load value and its html and put it on display if it has our prefix
+      if (keyPrefix == 'T0DOLi5t') {
+        $('.todos').append(`<div class="display-data-item" data-key-value="` + keyData +
+                           `"><span class="item">` + valueData +
+                           `</span><span class="item-buttons"><button class="edit" id="` + keyData +
+                           `">Edit</button><button class="delete" id="` + keyData +
+                           `">Delete</button></span></div>`);
+      }
     }
   } else {
     // toggleDisplay
@@ -53,7 +56,8 @@ $(document).ready(function() {
 
   // '.submit' (aka: add)
   $('.submit').click(function(e) {
-    var keyData = Date.now();// use timestamp instead of asking for a key entry.
+    var keyData = 'T0DOLi5t-' + Date.now();// use timestamp instead of asking for a key entry.
+    // added prefix to keydata to help identify todo list keys to this app.
     var valueData = $('#addText').val();
 
     if (valueData) {
@@ -193,3 +197,4 @@ $(document).ready(function() {
 // i don't care for the feedback responses.  they feel unnecessary.
 // drag and drop reordering and memory of changes seems important
 // unique id-prefix tied to app would allow for other items that use localStorage on the same domain
+// clear all button should only clear ToDo list items, not all localStorage for the domain!
