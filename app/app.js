@@ -31,12 +31,9 @@ $(document).ready(function() {
   // should load pre-existing local storage to display on ready/refresh
   // if localStorage stuff... iterate
   if (localStorage.length > 0) {
-    // toggleDisplay
-    toggleDisplay();
+    var keysArray = Object.keys(localStorage);
 
-    for (var i = 0; i < localStorage.length; i++) {
-      // get current key and value
-      var keysArray = Object.keys(localStorage);
+    for (i = 0; i < keysArray.length; i++) {
       var keyData = keysArray[i];
       var keyPrefix = keysArray[i].slice(0, 8);
       var valueData = localStorage.getItem(localStorage.key(i));
@@ -49,8 +46,8 @@ $(document).ready(function() {
                            `">Delete</button></span></div>`);
       }
     }
+    toggleDisplay();
   } else {
-    // toggleDisplay
     toggleDisplay();
   }
 
@@ -74,19 +71,6 @@ $(document).ready(function() {
       toggleDisplay();
       respond(this);// -----------------------------------------------------
     }
-
-  });
-
-  // '.delete'
-  $('.todos').on('click', '.delete', function() {// get item clicked in .todos
-    var keyData = $(this).attr('id').toString();// get id and make it a string
-    $(this).closest('.display-data-item').fadeOut(150, function() {
-      localStorage.removeItem(keyData);// removes key and data
-      $(this).closest('.display-data-item').remove();// remove item from display
-      // toggleDisplay
-      toggleDisplay();
-      respond(this);// -----------------------------------------------------
-    });
 
   });
 
@@ -143,13 +127,37 @@ $(document).ready(function() {
     respond(this);// -----------------------------------------------------
   });
 
+  // '.delete'
+  $('.todos').on('click', '.delete', function() {// get item clicked in .todos
+    var keyData = $(this).attr('id').toString();// get id and make it a string
+    $(this).closest('.display-data-item').fadeOut(150, function() {
+      localStorage.removeItem(keyData);// removes key and data
+      $(this).closest('.display-data-item').remove();// remove item from display
+      // toggleDisplay
+      toggleDisplay();
+      respond(this);// -----------------------------------------------------
+    });
+
+  });
+
   // 'clear all'
   $('.clear').click(function() {
-    localStorage.clear();// clears localstorage
-    $('.todos').html('');// clear the .todos box
-    // toggleDisplay
-    toggleDisplay();
-    respond(this);// -----------------------------------------------------
+    if (localStorage.length > 0) {
+      var keysArray = Object.keys(localStorage);
+
+      for (i = 0; i < keysArray.length; i++) {
+        var keyData = keysArray[i];
+        var keyPrefix = keysArray[i].slice(0, 8);
+
+        if (keyPrefix =='T0DOLi5t') {
+          localStorage.removeItem(keyData);// removes key and data
+        }
+      }
+      $('.todos').html('');// clear the .todos box
+      // toggleDisplay
+      toggleDisplay();
+      respond(this);// -----------------------------------------------------
+    }
   });
 
   // 'toggleDisplay'
@@ -157,13 +165,21 @@ $(document).ready(function() {
     var keysArray = Object.keys(localStorage);
 
     if (keysArray.length > 0) {
-      $('#content').fadeIn(100, function() {
-        $('#content').removeClass('hide');
-      });
-    } else if (keysArray.length === 0) {
-      $('#content').fadeOut(100, function() {
-        $('#content').addClass('hide');
-      });
+      for (var k in keysArray) {
+        keysArray[k].slice(0, 8);
+        if (keysArray[k] != 'T0DOLi5t') {
+          keysArray.splice(k, 1);
+        }
+      }
+      if (keysArray.length > 0) {
+        $('#content').fadeIn(100, function() {
+          $('#content').removeClass('hide');
+        });
+      } else if (keysArray.length === 0) {
+        $('#content').fadeOut(100, function() {
+          $('#content').addClass('hide');
+        });
+      }
     }
   }
 
@@ -194,7 +210,5 @@ $(document).ready(function() {
 
 });
 // final thoughts:
-// i don't care for the feedback responses.  they feel unnecessary.
+// i don't care for the feedback responses.  they feel like showing-off jQuery, mainly.
 // drag and drop reordering and memory of changes seems important
-// unique id-prefix tied to app would allow for other items that use localStorage on the same domain
-// clear all button should only clear ToDo list items, not all localStorage for the domain!
