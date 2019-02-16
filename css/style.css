@@ -73,6 +73,7 @@ footer {
   display: block;
   padding: 1em;
   margin-bottom: 1em;
+  word-wrap: break-word;
 }
 
 .item-buttons {
