@@ -165,21 +165,27 @@ $(document).ready(function() {
     var keysArray = Object.keys(localStorage);
 
     if (keysArray.length > 0) {
-      for (var k in keysArray) {
-        keysArray[k].slice(0, 8);
-        if (keysArray[k] != 'T0DOLi5t') {
-          keysArray.splice(k, 1);
+      for (var i = 0; i < keysArray.length; i++) {
+        var prefix = keysArray[i].slice(0, 8);
+        if (prefix != 'T0DOLi5t') {
+          keysArray.splice(keysArray[i], 1);
         }
       }
       if (keysArray.length > 0) {
         $('#content').fadeIn(100, function() {
           $('#content').removeClass('hide');
         });
-      } else if (keysArray.length === 0) {
+      }
+      if (keysArray.length === 0) {
         $('#content').fadeOut(100, function() {
           $('#content').addClass('hide');
         });
       }
+    }
+    if (keysArray.length === 0) {
+      $('#content').fadeOut(100, function() {
+        $('#content').addClass('hide');
+      });
     }
   }
 
