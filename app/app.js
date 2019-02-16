@@ -39,11 +39,11 @@ $(document).ready(function() {
       var valueData = localStorage.getItem(localStorage.key(i));
       // load value and its html and put it on display if it has our prefix
       if (keyPrefix == 'T0DOLi5t') {
-        $('.todos').append(`<div class="display-data-item" data-key-value="` + keyData +
+        $('.todos').append(`<li class="display-data-item" data-key-value="` + keyData +
                            `"><span class="item">` + valueData +
                            `</span><span class="item-buttons"><button class="edit" id="` + keyData +
                            `">Edit</button><button class="delete" id="` + keyData +
-                           `">Delete</button></span></div>`);
+                           `">Delete</button></span></li>`);
       }
     }
     toggleDisplay();
@@ -62,11 +62,11 @@ $(document).ready(function() {
       // write to db
       localStorage.setItem(keyData, valueData);
       // write to display
-      $('.todos').append(`<div class="display-data-item" data-key-value="` + keyData +
+      $('.todos').append(`<li class="display-data-item" data-key-value="` + keyData +
                          `"><span class="item">` + valueData +
                          `</span><span class="item-buttons"><button class="edit" id="` + keyData +
                          `">Edit</button><button class="delete" id="` + keyData +
-                         `">Delete</button></span></div>`);
+                         `">Delete</button></span></li>`);
       // toggleDisplay
       toggleDisplay();
       respond(this);// -----------------------------------------------------
@@ -82,12 +82,12 @@ $(document).ready(function() {
       // replace content of data-keyValue with
         // an input that contains the value currently stored
         // and replace .item-buttons (edit/delete buttons) with 'save' and 'cancel' buttons
-      $(this).closest('div').replaceWith('<div class="edit-item"><input type="text" class="save-value" id="' + keyData +
+      $(this).closest('li').replaceWith('<li class="edit-item"><input type="text" class="save-value" id="' + keyData +
                                          '" value="' + valueData +
                                          '"></input><span class="item-buttons">' +
                                          '<button class="save" id="' + keyData +
                                          '">Save</button><button class="cancel">Cancel</button>' +
-                                         '</span></div>');
+                                         '</span></li>');
       $('.save-value').focus();
   });
 
@@ -103,11 +103,11 @@ $(document).ready(function() {
       // write to db
       localStorage.setItem(keyData, valueData);
       // write to display
-      $(this).closest('div').replaceWith('<div class="display-data-item" data-key-value="' + keyData +
+      $(this).closest('li').replaceWith('<li class="display-data-item" data-key-value="' + keyData +
                                          '"><span class="item">' + valueData +
                                          '</span><span class="item-buttons"><button class="edit" id="' + keyData +
                                          '">Edit</button><button class="delete" id="' + keyData +
-                                         '">Delete</button></span></div>');
+                                         '">Delete</button></span></li>');
     }
     respond(this);// -----------------------------------------------------
   });
@@ -119,11 +119,11 @@ $(document).ready(function() {
 
     $('.save-value').val(''); // clear input
     // write to display
-    $(this).closest('div').replaceWith('<div class="display-data-item" data-key-value="' + keyData +
+    $(this).closest('li').replaceWith('<li class="display-data-item" data-key-value="' + keyData +
                                        '"><span class="item">' + valueData +
                                        '</span><span class="item-buttons"><button class="edit" id="' + keyData +
                                        '">Edit</button><button class="delete" id="' + keyData +
-                                       '">Delete</button></span></div>');
+                                       '">Delete</button></span></li>');
     respond(this);// -----------------------------------------------------
   });
 
@@ -210,11 +210,8 @@ $(document).ready(function() {
     // response message should fade out after n seconds
     $('#responses').animate({ opacity: 0 }, function() {
       $('#responses h2').replaceWith($response);
-      $('#responses').animate({ opacity: 1 }, 0).delay(1500).animate({ opacity: 0 });
+      $('#responses').animate({ opacity: 1 }, 0).delay(500).animate({ opacity: 0 });
     });
   }
 
 });
-// final thoughts:
-// i don't care for the feedback responses.  they feel like showing-off jQuery, mainly.
-// drag and drop reordering and memory of changes seems important

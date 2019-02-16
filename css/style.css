@@ -44,10 +44,13 @@ footer {
   display: flex;
 }
 
+#responses {
+  height: 1em;
+}
+
 #responses h2 {
   display: block;
   text-align: center;
-  height: 2em;
   color: lime;
   font-size: .89em;
   font-weight: 300;
@@ -60,6 +63,7 @@ footer {
 
 .todos {
   padding: 1em;
+  list-style: none;
 }
 
 .display-data-item, .edit-item {
