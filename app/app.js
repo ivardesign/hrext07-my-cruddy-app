@@ -82,7 +82,7 @@ $(document).ready(function() {
       // replace content of data-keyValue with
         // an input that contains the value currently stored
         // and replace .item-buttons (edit/delete buttons) with 'save' and 'cancel' buttons
-      $(this).closest('div').replaceWith('<div><input type="text" class="save-value" id="' + keyData +
+      $(this).closest('div').replaceWith('<div class="edit-item"><input type="text" class="save-value" id="' + keyData +
                                          '" value="' + valueData +
                                          '"></input><span class="item-buttons">' +
                                          '<button class="save" id="' + keyData +

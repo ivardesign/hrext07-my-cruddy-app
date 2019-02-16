@@ -62,7 +62,7 @@ footer {
   padding: 1em;
 }
 
-.display-data-item {
+.display-data-item, .edit-item {
   margin-bottom: .5em;
   background: #fff;
   padding: .5em;
@@ -76,11 +76,19 @@ footer {
   word-wrap: break-word;
 }
 
+.edit-item input {
+  margin-bottom: .4em;
+}
+
 .item-buttons {
   display: flex;
   justify-content: flex-end;
   height: 3em;
   margin: .5em 0;
+}
+
+.todos button {
+  width: 7.5em;
 }
 
 .clear {
