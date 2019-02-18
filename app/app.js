@@ -66,7 +66,6 @@ $(document).ready(function() {
           sortOrderArray.push(key);
         }
       }
-
       for (var count3 = 0; count3 < sortOrderArray.length; count3++) {
         var newSKey = sortOrderArray[count3];
         var shouldntExist = true;
@@ -84,7 +83,6 @@ $(document).ready(function() {
       }
       sortOrderString = sortOrderArray.toString();
       localStorage.setItem('toDosSortOrder', sortOrderString);
-
       // build display now
       for (var g = 0; g < sortOrderArray.length; g++) {
         var loadCount = 0;
@@ -93,8 +91,7 @@ $(document).ready(function() {
         for (var h = 0; h < keysArray.length; h++) {
           var tDKeyData = keysArray[h];
           var tDValueData = localStorage.getItem(localStorage.key(h));
-          //console.log(tDKeyData);
-          //console.log(tDValueData);
+
           if (sKeyData == tDKeyData) {
             // load item into .todos
             $('.todos').append(`<li class="display-data-item" id="` + tDKeyData +
